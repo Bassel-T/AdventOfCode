@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Year2024.Day1.Part1();
+            Year2024.Day1.Part2();
         }
     }
 }
