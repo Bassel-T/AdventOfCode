@@ -1,30 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdventOfCode.Utility;
 
 namespace AdventOfCode.Year2020
 {
     public static class Day13
     {
-        private static double GreatestCommonDenominator(double a, double b)
-        {
-            while (b > 0)
-            {
-                double t = b;
-                b = a % b;
-                a = t;
-            }
-
-            return a;
-        }
-
-        private static double LeastComonMultiple(double a, double b)
-        {
-            return a * b / GreatestCommonDenominator(a, b);
-        }
-
         public static void Part1()
         {
             // Read data
@@ -75,7 +54,7 @@ namespace AdventOfCode.Year2020
                 }
 
                 // Reset step
-                step = LeastComonMultiple(step, buses[i].Item1);
+                step = MathUtil.LeastComonMultiple(step, buses[i].Item1);
             }
 
             Console.WriteLine(t);
