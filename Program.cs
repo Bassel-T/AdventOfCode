@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Year2024.Day8.Part1();
-            Year2024.Day8.Part2();
+            Year2015.Day12.Part1();
+            Year2015.Day12.Part2();
         }
     }
 }
