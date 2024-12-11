@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +14,7 @@ namespace AdventOfCode.Utility
         KING // Diagonals included
     }
 
-    public static class ArrayUtil
+    public static class CollectionUtil
     {
         /// <summary>
         /// Returns the coordinates of each 
@@ -29,6 +31,26 @@ namespace AdventOfCode.Utility
 
 
             return tuple;
+        }
+
+        public static void InsertOrUpdate<T, U>(Dictionary<T, U> dict, T key, U value)
+        {
+            if (dict.ContainsKey(key))
+                dict[key] = value;
+            else
+                dict.Add(key, value);
+        }
+
+        public static void InsertOrIncrement<T, U>(Dictionary<T, U> dict, T key, U value) where U : INumber<U>
+        {
+            if (dict.ContainsKey(key))
+            {
+                dict[key] += value;
+            }
+            else
+            {
+                dict.Add(key, value);
+            }
         }
     }
 }
