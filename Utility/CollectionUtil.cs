@@ -52,5 +52,17 @@ namespace AdventOfCode.Utility
                 dict.Add(key, value);
             }
         }
+
+        public static void InsertOrAppend<T, U>(Dictionary<T, List<U>> dict, T key, U value)
+        {
+            if (dict.ContainsKey(key))
+            {
+                dict[key].Add(value);
+            }
+            else
+            {
+                dict.Add(key, new List<U>() { value });
+            }
+        }
     }
 }
