@@ -64,5 +64,12 @@ namespace AdventOfCode.Utility
                 dict.Add(key, new List<U>() { value });
             }
         }
+
+        public static (int robotX, int robotY) FindCoordsInGrid<T>(List<List<T>> grid, T v) => grid
+                                                                                                        .SelectMany((row, x) => row
+                                                                                                            .Select((val, y) => new { Value = val, X = x, Y = y }))
+                                                                                                            .Where(item => item.Value.Equals(v))
+                                                                                                        .Select(item => (item.X, item.Y))
+                                                                                                        .First();
     }
 }
