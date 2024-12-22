@@ -65,7 +65,7 @@ namespace AdventOfCode.Utility
             }
         }
 
-        public static (int robotX, int robotY) FindCoordsInGrid<T>(List<List<T>> grid, T v) => grid
+        public static (int robotX, int robotY) FindCoordsInGrid<T>(List<List<T>> grid, T? v) => v == null ? (-1, -1) : grid
                                                                                                         .SelectMany((row, x) => row
                                                                                                             .Select((val, y) => new { Value = val, X = x, Y = y }))
                                                                                                             .Where(item => item.Value.Equals(v))
