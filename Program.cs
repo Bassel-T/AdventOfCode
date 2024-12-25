@@ -6,8 +6,9 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            Day24.Part1();
-            Day24.Part2();
+            // Congratulations on completing 2024's Advent of Code!
+            Day25.Part1();
+            Day25.Part2();
         }
     }
 }
