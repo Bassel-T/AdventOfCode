@@ -11,7 +11,78 @@ namespace AdventOfCode.Year2024
     {
         public static void Part1()
         {
+            using (var reader = new StreamReader("input.txt"))
+            {
+                var input = reader.ReadToEnd().Split("\r\n\r\n", StringSplitOptions.RemoveEmptyEntries);
+                var grid = input[0].Split('\n').Select(x => x.ToCharArray().ToList()).ToList();
+                var moves = input[1].Replace("\n", "").Trim();
 
+                var directions = new Dictionary<char, (int x, int y)>()
+                {
+                    { '^', (-1, 0) }, { 'v', (1, 0) }, { '<', (0, -1) }, { '>', (0, 1) }
+                };
+
+                (int robotX, int robotY) = grid
+                    .SelectMany((row, x) => row
+                        .Select((val, y) => new { Value = val, X = x, Y = y })
+                        .Where(item => item.Value == '@'))
+                    .Select(item => (item.X, item.Y))
+                    .First();
+
+                foreach (var move in moves)
+                {
+                    if (!directions.ContainsKey(move)) continue;
+
+                    var (dx, dy) = directions[move];
+
+                    var newX = robotX + dx;
+                    var newY = robotY + dy;
+
+                    if (grid[newX][newY] == '.')
+                    {
+                        grid[newX][newY] = '@';
+                        grid[robotX][robotY] = '.';
+                        robotX = newX;
+                        robotY = newY;
+                    }
+                    else if (grid[newX][newY] == 'O')
+                    {
+                        int currentX = newX;
+                        int currentY = newY;
+
+                        while (grid[currentX][currentY] != '.' && grid[currentX][currentY] != '#')
+                        {
+                            currentX += dx;
+                            currentY += dy;
+                        }
+
+                        if (grid[currentX][currentY] == '.')
+                        {
+                            grid[robotX][robotY] = '.';
+                            grid[newX][newY] = '@';
+                            grid[currentX][currentY] = 'O';
+                            robotX = newX;
+                            robotY = newY;
+                        }
+                    }
+                }
+
+                Console.WriteLine(string.Join("\r\n", grid.Select(x => string.Join("", x))));
+
+                ulong score = 0;
+                for (ulong i = 0; i < (ulong)grid.Count; i++)
+                {
+                    for (ulong j = 0; j < (ulong)grid[0].Count - 1; j++)
+                    {
+                        if (grid[(int)i][(int)j] == 'O')
+                        {
+                            score += 100 * i + j;
+                        }
+                    }
+                }
+
+                Console.WriteLine(score);
+            }
         }
 
         public static void Part2()
