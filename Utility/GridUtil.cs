@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode.Utility
 {
-    public static class GraphUtil
+    public static class GridUtil
     {
         public static bool PointInBounds<T>(int x, List<T> grid)
         {
