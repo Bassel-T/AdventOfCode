@@ -32,5 +32,21 @@ namespace AdventOfCode.Utility
 
             return Math.Abs(p1.x - p2.x) + Math.Abs(p1.y - p2.y);
         }
+
+        public static int Modulo(int dividend, int divisor)
+        {
+            int remainder = dividend % divisor;
+
+            if (remainder < 0 && divisor > 0)
+            {
+                return remainder + divisor;
+            }
+            else if (remainder > 0 && divisor < 0)
+            {
+                return remainder + divisor;
+            }
+
+            return remainder;
+        }
     }
 }
