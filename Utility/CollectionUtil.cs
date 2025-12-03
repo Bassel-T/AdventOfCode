@@ -121,5 +121,72 @@ namespace AdventOfCode.Utility
                 }
             }
         }
+
+        public static string GetLargestWithSkips(string input, int length)
+        {
+            // Add padding to avoid the out of bounds later on
+            var memorized = new string?[input.Length + 1, length + 1];
+
+            string? Solve(int index, int remaining)
+            {
+                if (remaining == 0)
+                {
+                    // Base case
+                    return string.Empty;
+                }
+
+                if (memorized[index, remaining] != null)
+                {
+                    // Already calculated this spot, just return it
+                    return memorized[index, remaining];
+                }
+
+                // No more characters to use, so early exit
+                int availableCount = input.Length - index;
+                if (availableCount == 0)
+                {
+                    memorized[index, remaining] = null;
+                    return null;
+                }
+
+                // Skip the current digit
+                string? skip = Solve(index + 1, remaining);
+
+                // Don't skip the current digit
+                string? self = null;
+                string? next = Solve(index + 1, remaining - 1);
+
+                if (next != null)
+                {
+                    self = input[index] + next;
+                }
+
+                // Early decisions because long.Parse doesn't like nulls
+                if (self == null && skip == null)
+                {
+                    return null;
+                }
+
+                if (self == null)
+                {
+                    memorized[index, remaining] = skip;
+                    return skip;
+                }
+
+                if (skip == null)
+                {
+                    memorized[index, remaining] = self;
+                    return self;
+                }
+                
+                // Store the better option
+                string best = long.Parse(self) > long.Parse(skip) ? self : skip;
+                memorized[index, remaining] = best;
+                return best;
+            }
+
+            return Solve(0, length);
+        }
+
     }
 }
