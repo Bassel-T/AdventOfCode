@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,22 +24,17 @@ namespace AdventOfCode.Year2025
 
                         var rolls = 0;
 
-                        for (int m = -1; m < 2; m++)
+                        GridUtil.GetNeighbors(grid, i, j, true, (x, y) =>
                         {
-                            for (int n = -1; n < 2; n++)
+                            try
                             {
-                                if (m == 0 && n == 0) continue;
-
-                                try
-                                {
-                                    if (grid[i + m][j + n] == '@') rolls++;
-                                }
-                                catch (Exception ex)
-                                {
-                                    // Out of bounds
-                                }
+                                if (grid[x][y] == '@') rolls++;
                             }
-                        }
+                            catch (Exception ex)
+                            {
+                                // Out of bounds
+                            }
+                        });
 
                         if (rolls < 4) answer++;
                     }
@@ -70,22 +66,17 @@ namespace AdventOfCode.Year2025
 
                             var rolls = 0;
 
-                            for (int m = -1; m < 2; m++)
+                            GridUtil.GetNeighbors(grid, i, j, true, (x, y) =>
                             {
-                                for (int n = -1; n < 2; n++)
+                                try
                                 {
-                                    if (m == 0 && n == 0) continue;
-
-                                    try
-                                    {
-                                        if (grid[i + m][j + n] == '@') rolls++;
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        // Out of bounds
-                                    }
+                                    if (grid[x][y] == '@') rolls++;
                                 }
-                            }
+                                catch (Exception ex)
+                                {
+                                    // Out of bounds
+                                }
+                            });
 
                             if (rolls < 4)
                             {

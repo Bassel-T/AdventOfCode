@@ -18,5 +18,31 @@ namespace AdventOfCode.Utility
             return grid.All(subarray => PointInBounds(y, subarray)) && PointInBounds(x, grid);
         }
 
+        public static void GetNeighbors<T>(T[][] grid, int x, int y, bool includeCorners, Action<int,int> action)
+        {
+            int rows = grid.Length;
+
+            for (int dx = -1; dx <= 1; dx++)
+            {
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    if (dx == 0 && dy == 0)
+                        continue;
+
+                    int nx = x + dx;
+                    int ny = y + dy;
+
+                    if (!includeCorners && nx != 0 && ny != 0) continue;
+
+                    if (nx < 0 || nx >= rows)
+                        continue;
+
+                    if (ny < 0 || ny >= grid[nx].Length)
+                        continue;
+
+                    action(nx, ny);
+                }
+            }
+        }
     }
 }
