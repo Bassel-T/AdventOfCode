@@ -26,14 +26,7 @@ namespace AdventOfCode.Year2025
 
                         GridUtil.GetNeighbors(grid, i, j, true, (x, y) =>
                         {
-                            try
-                            {
-                                if (grid[x][y] == '@') rolls++;
-                            }
-                            catch (Exception ex)
-                            {
-                                // Out of bounds
-                            }
+                            if (grid[x][y] == '@') rolls++;
                         });
 
                         if (rolls < 4) answer++;
@@ -68,14 +61,7 @@ namespace AdventOfCode.Year2025
 
                             GridUtil.GetNeighbors(grid, i, j, true, (x, y) =>
                             {
-                                try
-                                {
-                                    if (grid[x][y] == '@') rolls++;
-                                }
-                                catch (Exception ex)
-                                {
-                                    // Out of bounds
-                                }
+                                if (grid[x][y] == '@') rolls++;
                             });
 
                             if (rolls < 4)
