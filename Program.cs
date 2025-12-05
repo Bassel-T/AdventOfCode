@@ -1,4 +1,4 @@
-﻿using AdventOfCode.Year2018;
+﻿using AdventOfCode.Year2025;
 
 namespace AdventOfCode
 {
@@ -6,8 +6,8 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            Day3.Part1();
-            Day3.Part2();
+            Day5.Part1();
+            Day5.Part2();
         }
     }
 }
