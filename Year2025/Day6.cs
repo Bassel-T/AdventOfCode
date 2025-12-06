@@ -52,12 +52,13 @@ namespace AdventOfCode.Year2025
             {
                 List<List<char>> values = new List<List<char>>();
 
-                var line = reader.ReadLine();
+                // Add extra space for calculation at the end
+                var line = reader.ReadLine() + ' ';
 
                 do
                 {
                     values.Add(line.ToCharArray().ToList());
-                    line = reader.ReadLine();
+                    line = reader.ReadLine() + ' ';
                 } while (!reader.EndOfStream);
 
                 var operations = line.ToCharArray().ToList();
@@ -91,17 +92,6 @@ namespace AdventOfCode.Year2025
                     {
                         numbers.Add(long.Parse($"{values[0][i]}{values[1][i]}{values[2][i]}{values[3][i]}"));
                     }
-                }
-
-                if (opCode == "*")
-                {
-                    Console.WriteLine(string.Join(opCode, numbers));
-                    total += numbers.Aggregate(1l, (accumulator, nextItem) => accumulator * nextItem);
-                }
-                else if (opCode == "+")
-                {
-                    Console.WriteLine(string.Join(opCode, numbers));
-                    total += numbers.Sum();
                 }
 
                 Console.WriteLine(total);
