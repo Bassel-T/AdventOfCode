@@ -31,6 +31,7 @@ namespace AdventOfCode.Year2025
                                   + (V1.Z - V2.Z) * (V1.Z - V2.Z);
         }
 
+        // Derived from Kruskal's Algorithm
         public static void Part1()
         {
             using (var reader = new StreamReader("input.txt"))
@@ -89,6 +90,7 @@ namespace AdventOfCode.Year2025
             }
         }
 
+        // Actual Kruskal's Algorithm
         public static void Part2()
         {
             using (var reader = new StreamReader("input.txt"))
